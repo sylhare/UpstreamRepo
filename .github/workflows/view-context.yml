@@ -4,6 +4,7 @@ on:
   push:
   pull_request:
   pull_request_review:
+  pull_request_target:
   issues:
   project:
   workflow_call:
@@ -19,3 +20,11 @@ jobs:
         uses: actions/github-script@v5
         with:
           script: console.log(context)
+      - name: Check secret
+        shell: bash
+        env: # Or as an environment variable
+          SUPER_SECRET: ${{ secrets.SuperSecret }}
+          USER: ${{ github.actor }}
+        run: |
+          echo "Secret: $SUPER_SECRET"
+          echo "${USER}"

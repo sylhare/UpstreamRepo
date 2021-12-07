@@ -2,6 +2,7 @@
 # GitHub context https://docs.github.com/en/actions/learn-github-actions/contexts#github-context
 name: '[Automation] Add PR to project'
 on:
+  pull_request_target:
   pull_request:
     types: [opened]
 
@@ -26,9 +27,12 @@ jobs:
 
       - name: Add PR to project board
         continue-on-error: true
+        env:
+          USER: "${{ github.actor }}"
+          TOKEN: "${{ secrets.ADMIN_PAT }}"
         run: |
           curl -X POST \
           -H "Accept: application/vnd.github.v3+json" \
-            -u ${{ github.actor }}:${{ secrets.ADMIN_PAT }} \
+            -u ${USER}:${TOKEN} \
           -d '{"content_id": context.payload.pull_request.id, "content_type": "PullRequest", "column_id": 17134543 }' \
             https://api.github.com/projects/columns/17134543/cards
