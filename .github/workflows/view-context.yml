@@ -10,7 +10,7 @@ on:
 
 
 jobs:
-  create-card:
+  view-context:
     runs-on: ubuntu-latest
     steps:
       - name: View context attributes
