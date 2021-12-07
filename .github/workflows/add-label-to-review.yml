@@ -1,5 +1,7 @@
+name: '[Automation]'
 on:
   pull_request_review:
+    types: [submitted]
   pull_request:
     types: [review_requested]
 
@@ -9,6 +11,7 @@ jobs:
     steps:
       - uses: actions/github-script@v5
         with:
+          github-token: ${{ secrets.ADMIN_PAT }}
           script: |
             github.rest.issues.addLabels({
               issue_number: context.issue.number,
