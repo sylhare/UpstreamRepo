@@ -1,0 +1,18 @@
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  apply-label:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Add issue to project board
+      uses: actions/github-script@v5
+      continue-on-error: true
+      with:
+        script: |
+          github.rest.projects.createCard({
+          column_id: 17134543,
+          content_id: context.payload.issue.id,
+          content_type: "Issue"
+          });

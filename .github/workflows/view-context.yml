@@ -1,0 +1,20 @@
+name: 'Context'
+
+on:
+  push:
+  pull_request:
+  issues:
+  project:
+  workflow_call:
+  workflow_dispatch:
+
+
+jobs:
+  create-card:
+    runs-on: ubuntu-latest
+    steps:
+      - name: View context attributes
+        continue-on-error: true
+        uses: actions/github-script@v5
+        with:
+          script: console.log(context)
