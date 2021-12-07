@@ -1,6 +1,6 @@
 # GitHub-script action https://github.com/actions/github-script
 # GitHub context https://docs.github.com/en/actions/learn-github-actions/contexts#github-context
-name: '[Automation]'
+name: '[Automation] Add PR to project'
 on:
   pull_request:
     types: [opened]

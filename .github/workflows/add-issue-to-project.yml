@@ -1,4 +1,4 @@
-name: '[Automation]'
+name: '[Automation] Add issue to project'
 on:
   issues:
     types: [opened]

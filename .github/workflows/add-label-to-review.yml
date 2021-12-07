@@ -1,4 +1,4 @@
-name: '[Automation]'
+name: '[Automation] Add review label'
 on:
   pull_request_review:
     types: [submitted]

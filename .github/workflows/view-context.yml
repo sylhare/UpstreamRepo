@@ -1,5 +1,15 @@
 name: 'Context'
 
+on:
+  push:
+  pull_request:
+  pull_request_review:
+  issues:
+  project:
+  workflow_call:
+  workflow_dispatch:
+
+
 jobs:
   view-context:
     runs-on: ubuntu-latest
