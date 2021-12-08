@@ -1,0 +1,24 @@
+# GitHub-script action https://github.com/actions/github-script
+# GitHub context https://docs.github.com/en/actions/learn-github-actions/contexts#github-context
+name: '[Automation] Add PR to project'
+on:
+  pull_request_target
+
+jobs:
+  create-pr-card:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Add PR to project board
+        uses: actions/github-script@v5
+        #continue-on-error: true
+        with:
+          github-token: ${{ secrets.ADMIN_PAT }}
+          script: |
+            github.rest.projects.createCard({
+            column_id: 17134543, # IN_PROGRESS column
+            content_id: context.payload.pull_request.id,
+            content_type: "PullRequest"
+            });

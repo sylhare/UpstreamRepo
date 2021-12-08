@@ -1,0 +1,20 @@
+name: '[Automation] Add issue to project'
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  cresate-issue-card:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Add issue to project board
+      uses: actions/github-script@v5
+      continue-on-error: true
+      with:
+        github-token: ${{ secrets.ADMIN_PAT }}
+        script: |
+          github.rest.projects.createCard({
+          column_id: 17134543,
+          content_id: context.payload.issue.id,
+          content_type: "Issue"
+          });
